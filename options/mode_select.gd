@@ -6,17 +6,11 @@ var just_set_mode: bool = false
 
 
 func _ready() -> void:
-	_get_current_mode.call_deferred()
 	Midi.daw_response.connect(_on_daw_response)
-
-
-func _get_current_mode() -> void:
-	Midi.send_midi_message([240, 0, 32, 41, 2, 14, 0, 247])
-	Midi.queued_midi_responses.append(_get_current_layout)
-
-
-func _get_current_layout(response: PackedByteArray) -> void:
-	selected = response[7]
+	# Wait for the DAW mode to be set first
+	await get_tree().process_frame
+	# Set the session to default
+	Midi.send_midi_message.call_deferred([240, 0, 32, 41, 2, 14, 0, 0, 0, 0, 247])
 
 
 func _on_daw_response(message: PackedByteArray) -> void:

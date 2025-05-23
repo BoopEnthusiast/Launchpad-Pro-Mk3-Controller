@@ -204,6 +204,14 @@ const KEY_CODES: Array[int] = [
 	18,
 ]
 
+var temp_color: Color:
+	set(value):
+		temp_color = value
+		reserve_color = color
+		color = value
+
+var reserve_color: Color
+
 
 func _on_button_pressed() -> void:
 	pressed.emit(self)
