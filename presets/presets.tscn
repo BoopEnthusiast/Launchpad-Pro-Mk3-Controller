@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dtq0lge8g5ibv"]
+
+[node name="Presets" type="ScrollContainer"]
+anchors_preset = -1
+anchor_left = 0.782986
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2

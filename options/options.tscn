@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7d7xnw1ycosp"]
+
+[ext_resource type="PackedScene" uid="uid://cf1tvbqxelpjq" path="res://options/devices/devices.tscn" id="1_jtqf2"]
+[ext_resource type="Script" uid="uid://pfjtg6ukm721" path="res://options/mode_select.gd" id="2_dwof0"]
+[ext_resource type="Script" uid="uid://c274into6fedh" path="res://options/mode_change.gd" id="3_g3cjn"]
+[ext_resource type="Script" uid="uid://odx8ubx7g4nx" path="res://options/drum_mode.gd" id="4_tns5w"]
+
+[node name="Options" type="ScrollContainer"]
+anchors_preset = -1
+anchor_right = 0.217882
+anchor_bottom = 1.0
+offset_right = -1.00008
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsVBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Devices" parent="OptionsVBox" instance=ExtResource("1_jtqf2")]
+layout_mode = 2
+
+[node name="HSeperator" type="HSeparator" parent="OptionsVBox"]
+layout_mode = 2
+
+[node name="ModeLabel" type="Label" parent="OptionsVBox"]
+layout_mode = 2
+text = "Mode"
+horizontal_alignment = 1
+
+[node name="ModeSelect" type="OptionButton" parent="OptionsVBox"]
+layout_mode = 2
+selected = 0
+item_count = 20
+popup/item_0/text = "Session"
+popup/item_0/id = 0
+popup/item_1/text = "Fader"
+popup/item_1/id = 1
+popup/item_2/text = "Chord"
+popup/item_2/id = 2
+popup/item_3/text = "Custom Mode"
+popup/item_3/id = 3
+popup/item_4/text = "Node / Drum"
+popup/item_4/id = 4
+popup/item_5/text = "Scale Settings"
+popup/item_5/id = 5
+popup/item_6/text = "Sequencer Settings"
+popup/item_6/id = 6
+popup/item_7/text = "Sequencer Steps"
+popup/item_7/id = 7
+popup/item_8/text = "Sequencer Velocity"
+popup/item_8/id = 8
+popup/item_9/text = "Sequencer Pattern Settings"
+popup/item_9/id = 9
+popup/item_10/text = "Sequencer Probability"
+popup/item_10/id = 10
+popup/item_11/text = "Sequencer Mutation"
+popup/item_11/id = 11
+popup/item_12/text = "Sequencer Micro Step"
+popup/item_12/id = 12
+popup/item_13/text = "Sequencer Projects"
+popup/item_13/id = 13
+popup/item_14/text = "Sequencer Patterns"
+popup/item_14/id = 14
+popup/item_15/text = "Sequencer Tempo"
+popup/item_15/id = 15
+popup/item_16/text = "Sequencer Swing"
+popup/item_16/id = 16
+popup/item_17/text = "Programmer Mode"
+popup/item_17/id = 17
+popup/item_18/text = "Settings Menu"
+popup/item_18/id = 18
+popup/item_19/text = "Custom mode Settings"
+popup/item_19/id = 19
+script = ExtResource("2_dwof0")
+
+[node name="DAWMode" type="CheckButton" parent="OptionsVBox"]
+layout_mode = 2
+button_pressed = true
+text = "Daw Mode"
+script = ExtResource("3_g3cjn")
+
+[node name="DrumMode" type="CheckButton" parent="OptionsVBox"]
+layout_mode = 2
+button_pressed = true
+text = "Drum Mode"
+script = ExtResource("4_tns5w")
+
+[connection signal="item_selected" from="OptionsVBox/ModeSelect" to="OptionsVBox/ModeSelect" method="_on_item_selected"]
+[connection signal="toggled" from="OptionsVBox/DAWMode" to="OptionsVBox/DAWMode" method="_on_toggled"]
+[connection signal="toggled" from="OptionsVBox/DrumMode" to="OptionsVBox/DrumMode" method="_on_toggled"]

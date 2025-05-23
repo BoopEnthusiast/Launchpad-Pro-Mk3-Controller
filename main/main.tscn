@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxuhuv551u0mj"]
+
+[ext_resource type="Script" uid="uid://nyo6qyjdytal" path="res://main/grid_container.gd" id="1_mu2yd"]
+[ext_resource type="PackedScene" uid="uid://b7d7xnw1ycosp" path="res://options/options.tscn" id="2_pjrb6"]
+[ext_resource type="PackedScene" uid="uid://dtq0lge8g5ibv" path="res://presets/presets.tscn" id="3_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://cy5xoeurnkab2" path="res://main/color_select/color_select.tscn" id="4_c651c"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222222
+anchor_top = 0.00617284
+anchor_right = 0.777778
+anchor_bottom = 0.993827
+grow_horizontal = 2
+grow_vertical = 2
+columns = 8
+script = ExtResource("1_mu2yd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" parent="." instance=ExtResource("2_pjrb6")]
+layout_mode = 1
+anchor_right = 0.217014
+offset_right = 0.0
+
+[node name="Presets" parent="." instance=ExtResource("3_xwkvk")]
+layout_mode = 1
+
+[node name="ColorSelectPopup" parent="." instance=ExtResource("4_c651c")]
+visible = false
+
+[connection signal="color_selected" from="ColorSelectPopup" to="GridContainer" method="_on_color_select_popup_color_selected"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy5xoeurnkab2"]
+
+[ext_resource type="Script" uid="uid://c8tyfxhhhjy43" path="res://main/color_select/color_select.gd" id="1_yh2nh"]
+
+[node name="ColorSelectPopup" type="Popup"]
+auto_translate_mode = 1
+title = "Pick Color"
+initial_position = 4
+size = Vector2i(300, 200)
+visible = true
+script = ExtResource("1_yh2nh")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 16

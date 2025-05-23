@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxjm23jh323sj"]
+
+[ext_resource type="Script" uid="uid://bibfna6di11nt" path="res://main/color_select/color_select_button.gd" id="1_hxg16"]
+
+[node name="ColorSelectButton" type="ColorRect"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hxg16")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://cf1tvbqxelpjq"]
+
+[ext_resource type="Script" uid="uid://cunuwy1s75666" path="res://options/devices/devices.gd" id="1_5emc5"]
+[ext_resource type="Script" uid="uid://cy7yuqxtnbh0d" path="res://options/devices/midi_selection.gd" id="2_8jfaw"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_vjy7d"]
+[ext_resource type="Script" uid="uid://dqprqv1t3stwd" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_5er26"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jfaw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_272bh"]
+script = ExtResource("4_5er26")
+icon_font = "MaterialIcons"
+icon_name = "refresh"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
+
+[node name="Devices" type="VBoxContainer"]
+offset_right = 60.0
+offset_bottom = 48.0
+script = ExtResource("1_5emc5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Devices"
+horizontal_alignment = 1
+
+[node name="InputMIDI" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 1
+popup/item_0/id = 0
+script = ExtResource("2_8jfaw")
+string_to_check_for = "MIDI"
+
+[node name="OutputMIDI" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 1
+popup/item_0/id = 0
+script = ExtResource("2_8jfaw")
+midi_selection = 1
+string_to_check_for = "MIDI"
+
+[node name="InputDIN" type="OptionButton" parent="."]
+layout_mode = 2
+script = ExtResource("2_8jfaw")
+string_to_check_for = "DIN"
+
+[node name="OutputDIN" type="OptionButton" parent="."]
+layout_mode = 2
+script = ExtResource("2_8jfaw")
+midi_selection = 1
+string_to_check_for = "DIN"
+
+[node name="InputDAW" type="OptionButton" parent="."]
+layout_mode = 2
+script = ExtResource("2_8jfaw")
+string_to_check_for = "DAW"
+
+[node name="OutputDAW" type="OptionButton" parent="."]
+layout_mode = 2
+script = ExtResource("2_8jfaw")
+midi_selection = 1
+string_to_check_for = "DAW"
+
+[node name="RefreshDevices" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8jfaw")
+script = ExtResource("3_vjy7d")
+layout_order = "Icon"
+layout_vertical = true
+icon_settings = SubResource("Resource_272bh")
+label_settings = SubResource("LabelSettings_5vw27")
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
+[connection signal="item_selected" from="InputMIDI" to="InputMIDI" method="_on_item_selected"]
+[connection signal="port_selected" from="InputMIDI" to="." method="_on_input_midi_port_selected"]
+[connection signal="item_selected" from="OutputMIDI" to="OutputMIDI" method="_on_item_selected"]
+[connection signal="port_selected" from="OutputMIDI" to="." method="_on_output_midi_port_selected"]
+[connection signal="item_selected" from="InputDIN" to="InputDIN" method="_on_item_selected"]
+[connection signal="port_selected" from="InputDIN" to="." method="_on_input_din_port_selected"]
+[connection signal="item_selected" from="OutputDIN" to="OutputDIN" method="_on_item_selected"]
+[connection signal="port_selected" from="OutputDIN" to="." method="_on_output_din_port_selected"]
+[connection signal="item_selected" from="InputDAW" to="InputDAW" method="_on_item_selected"]
+[connection signal="port_selected" from="InputDAW" to="." method="_on_input_daw_port_selected"]
+[connection signal="item_selected" from="OutputDAW" to="OutputDAW" method="_on_item_selected"]
+[connection signal="port_selected" from="OutputDAW" to="." method="_on_output_daw_port_selected"]
+[connection signal="pressed" from="RefreshDevices" to="InputMIDI" method="_on_refresh_devices_pressed"]
+[connection signal="pressed" from="RefreshDevices" to="OutputMIDI" method="_on_refresh_devices_pressed"]
+[connection signal="pressed" from="RefreshDevices" to="InputDIN" method="_on_refresh_devices_pressed"]
+[connection signal="pressed" from="RefreshDevices" to="OutputDIN" method="_on_refresh_devices_pressed"]
+[connection signal="pressed" from="RefreshDevices" to="InputDAW" method="_on_refresh_devices_pressed"]
+[connection signal="pressed" from="RefreshDevices" to="OutputDAW" method="_on_refresh_devices_pressed"]
