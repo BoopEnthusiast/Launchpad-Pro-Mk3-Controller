@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="3_vjy7d"]
 [ext_resource type="Script" uid="uid://dqprqv1t3stwd" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="4_5er26"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jfaw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv3dw"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -80,7 +80,7 @@ string_to_check_for = "DAW"
 
 [node name="RefreshDevices" type="PanelContainer" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8jfaw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xv3dw")
 script = ExtResource("3_vjy7d")
 layout_order = "Icon"
 layout_vertical = true

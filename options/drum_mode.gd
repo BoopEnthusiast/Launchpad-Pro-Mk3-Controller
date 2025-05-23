@@ -1,7 +1,6 @@
 extends CheckButton
 
 
-
 func _ready() -> void:
 	# Assume I want drum mode on
 	Midi.send_daw_message.call_deferred([240, 0, 32, 41, 2, 14, 15, 1, 247])

@@ -1,9 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7d7xnw1ycosp"]
+[gd_scene load_steps=12 format=3 uid="uid://b7d7xnw1ycosp"]
 
+[ext_resource type="Script" uid="uid://b6luyeihs6qc4" path="res://options/options.gd" id="1_g3cjn"]
 [ext_resource type="PackedScene" uid="uid://cf1tvbqxelpjq" path="res://options/devices/devices.tscn" id="1_jtqf2"]
 [ext_resource type="Script" uid="uid://pfjtg6ukm721" path="res://options/mode_select.gd" id="2_dwof0"]
 [ext_resource type="Script" uid="uid://c274into6fedh" path="res://options/mode_change.gd" id="3_g3cjn"]
 [ext_resource type="Script" uid="uid://odx8ubx7g4nx" path="res://options/drum_mode.gd" id="4_tns5w"]
+[ext_resource type="Script" uid="uid://bmgpqjj0s8mxf" path="res://options/programmer_mode.gd" id="5_dwof0"]
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="7_dsph3"]
+[ext_resource type="Script" uid="uid://dqprqv1t3stwd" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="8_lcuot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv3dw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_hxrhv"]
+script = ExtResource("8_lcuot")
+icon_font = "MaterialIcons"
+icon_name = "refresh"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dsph3"]
 
 [node name="Options" type="ScrollContainer"]
 anchors_preset = -1
@@ -11,6 +41,7 @@ anchor_right = 0.217882
 anchor_bottom = 1.0
 offset_right = -1.00008
 grow_vertical = 2
+script = ExtResource("1_g3cjn")
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionsVBox" type="VBoxContainer" parent="."]
@@ -85,6 +116,32 @@ button_pressed = true
 text = "Drum Mode"
 script = ExtResource("4_tns5w")
 
+[node name="ProgrammerMode" type="CheckButton" parent="OptionsVBox"]
+layout_mode = 2
+text = "Programmer Mode"
+script = ExtResource("5_dwof0")
+
+[node name="HSeparator" type="HSeparator" parent="OptionsVBox"]
+layout_mode = 2
+
+[node name="ColorLabel" type="Label" parent="OptionsVBox"]
+layout_mode = 2
+text = "Color"
+horizontal_alignment = 1
+
+[node name="SendColor" type="PanelContainer" parent="OptionsVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xv3dw")
+script = ExtResource("7_dsph3")
+icon_settings = SubResource("Resource_hxrhv")
+label_text = "Send Color"
+label_settings = SubResource("LabelSettings_dsph3")
+button_margin = 0
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
 [connection signal="item_selected" from="OptionsVBox/ModeSelect" to="OptionsVBox/ModeSelect" method="_on_item_selected"]
 [connection signal="toggled" from="OptionsVBox/DAWMode" to="OptionsVBox/DAWMode" method="_on_toggled"]
 [connection signal="toggled" from="OptionsVBox/DrumMode" to="OptionsVBox/DrumMode" method="_on_toggled"]
+[connection signal="pressed" from="OptionsVBox/ProgrammerMode" to="OptionsVBox/ProgrammerMode" method="_on_pressed"]
+[connection signal="toggled" from="OptionsVBox/ProgrammerMode" to="OptionsVBox/ProgrammerMode" method="_on_toggled"]
+[connection signal="pressed" from="OptionsVBox/SendColor" to="." method="_on_send_color_pressed"]

@@ -49,3 +49,13 @@ func _on_daw_response(message: PackedByteArray) -> void:
 			var pressed_key: Key = get_child(Key.KEY_CODES.find(message[1])) as Key
 			pressed_keys.append(pressed_key)
 			pressed_key.temp_color = Color.from_ok_hsl(0.9, 0.8, message[2] / 127.0)
+
+
+func _on_options_send_color() -> void:
+	var i: int = 0
+	for key: Key in get_children() as Array[Key]:
+		var color_code: int = key.KEY_COLORS.find(key.color)
+		var packet_to_send: PackedByteArray = [144, key.KEY_CODES[i], color_code]
+		Midi.send_midi_message.call_deferred(packet_to_send)
+		Midi.send_daw_message.call_deferred(packet_to_send)
+		i += 1
