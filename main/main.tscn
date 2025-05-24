@@ -38,4 +38,6 @@ layout_mode = 1
 visible = false
 
 [connection signal="send_color" from="Options" to="GridContainer" method="_on_options_send_color"]
+[connection signal="load_preset" from="Presets" to="GridContainer" method="_on_presets_load_preset"]
+[connection signal="save_preset" from="Presets" to="GridContainer" method="_on_presets_save_preset"]
 [connection signal="color_selected" from="ColorSelectPopup" to="GridContainer" method="_on_color_select_popup_color_selected"]

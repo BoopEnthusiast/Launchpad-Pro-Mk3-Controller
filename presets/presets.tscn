@@ -1,4 +1,45 @@
-[gd_scene format=3 uid="uid://dtq0lge8g5ibv"]
+[gd_scene load_steps=8 format=3 uid="uid://dtq0lge8g5ibv"]
+
+[ext_resource type="Script" uid="uid://pwyh8365is28" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="1_amsmn"]
+[ext_resource type="Script" uid="uid://ccopfnclgdxn0" path="res://presets/presets.gd" id="1_uenlr"]
+[ext_resource type="Script" uid="uid://dqprqv1t3stwd" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="2_uenlr"]
+[ext_resource type="Script" uid="uid://ba6r4ywbpvita" path="res://presets/select_preset.gd" id="4_qd1rv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsph3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_2yfor"]
+script = ExtResource("2_uenlr")
+icon_font = "MaterialIcons"
+icon_name = "content-save"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_qd1rv"]
+script = ExtResource("2_uenlr")
+icon_font = "MaterialIcons"
+icon_name = "file-download"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
 
 [node name="Presets" type="ScrollContainer"]
 anchors_preset = -1
@@ -7,7 +48,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("1_uenlr")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PresetsVBox" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveLabel" type="Label" parent="PresetsVBox"]
+layout_mode = 2
+text = "Save preset"
+horizontal_alignment = 1
+
+[node name="PresetName" type="LineEdit" parent="PresetsVBox"]
+layout_mode = 2
+placeholder_text = "Preset name"
+
+[node name="SavePreset" type="PanelContainer" parent="PresetsVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsph3")
+script = ExtResource("1_amsmn")
+icon_settings = SubResource("Resource_2yfor")
+label_text = "Save Preset"
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
+[node name="HSeparator" type="HSeparator" parent="PresetsVBox"]
+layout_mode = 2
+
+[node name="LoadLabel" type="Label" parent="PresetsVBox"]
+layout_mode = 2
+text = "Load preset"
+horizontal_alignment = 1
+
+[node name="SelectPreset" type="OptionButton" parent="PresetsVBox"]
+layout_mode = 2
+script = ExtResource("4_qd1rv")
+
+[node name="LoadPreset" type="PanelContainer" parent="PresetsVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsph3")
+script = ExtResource("1_amsmn")
+icon_settings = SubResource("Resource_qd1rv")
+label_text = "Load Preset"
+metadata/_custom_type_script = "uid://pwyh8365is28"
+
+[connection signal="pressed" from="PresetsVBox/SavePreset" to="." method="_on_save_preset_pressed"]
+[connection signal="pressed" from="PresetsVBox/LoadPreset" to="." method="_on_load_preset_pressed"]
+[connection signal="pressed" from="PresetsVBox/LoadPreset" to="PresetsVBox/LoadPreset" method="_on_pressed"]
